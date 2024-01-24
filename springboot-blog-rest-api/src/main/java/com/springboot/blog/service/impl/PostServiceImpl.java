@@ -104,7 +104,7 @@ public class PostServiceImpl implements PostService {
 //        postDto.setDescription(post.getDescription());
 //        postDto.setContent(post.getContent());
 
-//instead of writing abv code we can use this lib to the chore
+//instead of writing abv code we can use this lib to do the stuff for us
 //        PostDto postDto=mapper.map(post,PostDto.class);
 //        return postDto;
         PostDto postDto = mapper.map(post, PostDto.class);
