@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @Tag(name="CRUD REST APIs for Post Resource")
-@RequestMapping("/api/posts")
+//@RequestMapping("/api/v1/posts")
 public class PostController {
 
     private PostService postService;
@@ -27,9 +27,11 @@ public class PostController {
         this.postService = postService;
     }
 
+
+
 //create blog post
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
+    @PostMapping("/api/v1/posts")
     @SecurityRequirement(name="Bearer Authentication")
     @Operation(
             summary = "Create Post REST API",
@@ -41,8 +43,11 @@ public class PostController {
         return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
     }
 
+
+
+
     //get all post rest api
-    @GetMapping
+    @GetMapping("/api/v1/posts")
     @Operation(
             summary = "Get All Post REST API",
             description = "Get All Post is used to get all the available post from the database"
@@ -58,8 +63,11 @@ public class PostController {
         return postService.getAllPosts(pageNo,pageSize,sortBy,sortDir);
     }
 
+
+
+
     //get post by id
-    @GetMapping("/{id}")
+    @GetMapping("/api/v1/posts/{id}")
     @Operation(
             summary = "Get Post By Id REST API",
             description = "Get Post By Id is used to get single  post from the database"
@@ -70,9 +78,12 @@ public class PostController {
         return  ResponseEntity.ok(postService.getPostById(id));
     }
 
+
+
+
     //update post
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/api/v1/posts/{id}")
     @SecurityRequirement(name="Bearer Authentication")
     @Operation(
             summary = "Update Post REST API",
@@ -86,8 +97,11 @@ public class PostController {
 
     }
 
+
+
+
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/v1/posts/{id}")
     @SecurityRequirement(name="Bearer Authentication")
     @Operation(
             summary = "Delete Post REST API",
@@ -101,10 +115,13 @@ public class PostController {
         return new ResponseEntity<>("Post entity deleted successfully",HttpStatus.OK);
     }
 
+
+
+
     //build get post by category api
 
 //http:/localhost:8080/api/posts/category/{categoryId}
-    @GetMapping("/category/{id}")
+    @GetMapping("/api/v1/posts/category/{id}")
     @Operation(
             summary = "Get Post By Category Id REST API",
             description = "Get Post By Category Id is used to get the particular post from the database by the category id"
